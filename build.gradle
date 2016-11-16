@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'com.bmuschko:gradle-docker-plugin:3.0.3'
+
+    }
+}
+
+plugins {
+    id 'net.researchgate.release' version '2.4.1'
+    id "com.jfrog.bintray" version "1.7"
+}
+apply plugin: 'java'
+apply from: 'build-docker.gradle'
+apply from: 'release-service.gradle'
+apply from: 'build-quality.gradle'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+description = 'EPAM Report portal. Rally Integration'
+
+repositories {
+    jcenter()
+    maven { url "http://dl.bintray.com/epam/reportportal" }
+    flatDir {
+        dirs 'libs'
+    }
+}
+dependencies {
+    compile 'com.epam.reportportal:commons-bugtracking:2.6.2'
+    compile 'com.epam.reportportal:commons:2.6.1'
+    compile 'org.jasypt:jasypt:1.9.2'
+
+    compile name: 'sdk-14.0.1'
+
+}
+
+task copyTfs(type: Copy) {
+    into "$buildDir/libs"
+    from "$projectDir/native.tar.gz"
+}
+
+task copyRuntimeLibs(type: Copy) {
+    into "$buildDir/libs/lib"
+    from configurations.runtime
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2'
+}
+
+build.dependsOn(copyRuntimeLibs).dependsOn(copyTfs)
+
+
+
+jar {
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    manifest {
+        attributes 'Implementation-Title': 'ReportPortal TFS Integration',
+                'Implementation-Version': version,
+                'Main-Class': 'com.epam.reportportal.extension.bugtracking.tfs.TfsServiceApp',
+                'Class-Path': configurations.runtime.files.findAll { it.name.contains("sdk-14") == false }.collect {
+                    "lib/$it.name"
+                }.join(' ').concat(' lib/sdk-14.0.1.jar')
+    }
+}
+
+
+
+
+
+
