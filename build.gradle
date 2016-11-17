@@ -24,7 +24,7 @@ apply from: 'build-quality.gradle'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-description = 'EPAM Report portal. Rally Integration'
+description = 'EPAM Report portal. TFS Integration'
 
 repositories {
     jcenter()
