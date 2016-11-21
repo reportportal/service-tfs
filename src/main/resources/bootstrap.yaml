@@ -3,6 +3,7 @@ info:
     name: TFS Service
     description: ReportPortal TFS Integration
     version: '@version@'
+    branch: '@branch@'
 
 spring:
   application:
