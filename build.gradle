@@ -45,14 +45,13 @@ dependencies {
     compile 'com.epam.reportportal:commons-bugtracking:2.6.2'
     compile 'com.epam.reportportal:commons:2.6.1'
     compile 'org.jasypt:jasypt:1.9.2'
-
-    compile name: 'sdk-14.0.1'
+    compile name: 'sdk-14.0.3'
 
 }
 
 task copyTfs(type: Copy) {
     into "$buildDir/libs"
-    from "$projectDir/native.tar.gz"
+    from "$projectDir/docker/native.tar.gz"
 }
 
 task copyRuntimeLibs(type: Copy) {
@@ -76,7 +75,7 @@ jar {
                 'Main-Class': 'com.epam.reportportal.extension.bugtracking.tfs.TfsServiceApp',
                 'Class-Path': configurations.runtime.files.findAll { it.name.contains("sdk-14") == false }.collect {
                     "lib/$it.name"
-                }.join(' ').concat(' lib/sdk-14.0.1.jar')
+                }.join(' ').concat(' libs/sdk-14.0.3.jar')
     }
 }
 

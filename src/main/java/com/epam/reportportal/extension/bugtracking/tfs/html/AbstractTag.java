@@ -21,41 +21,36 @@
 
 package com.epam.reportportal.extension.bugtracking.tfs.html;
 
+import com.google.common.base.Joiner;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.google.common.base.Joiner;
 
 /**
  * Abstract Tag containing name and attributes
  *
  * @author Andrei Varabyeu
  */
-public abstract class AbstractTag implements Tag {
+abstract class AbstractTag implements Tag {
 
 	private String name;
 
 	private Map<String, String> attributes;
 
-	public AbstractTag(String name) {
+	AbstractTag(String name) {
 		this.name = name;
 		this.attributes = new LinkedHashMap<>();
 	}
 
-	public AbstractTag attribute(String name, String value) {
-		this.attributes.put(name, "\"" + value + "\"");
-		return this;
-	}
-
-	protected String getName() {
+	String getName() {
 		return name;
 	}
 
-	protected Map<String, String> getAttributes() {
+	Map<String, String> getAttributes() {
 		return attributes;
 	}
 
-	protected void writeStart(StringBuilder builder, String name, Map<String, String> attributes) {
+	void writeStart(StringBuilder builder, String name, Map<String, String> attributes) {
 		builder.append("<").append(name);
 		if (null != attributes && !attributes.isEmpty()) {
 			builder.append(" ");
@@ -64,7 +59,7 @@ public abstract class AbstractTag implements Tag {
 		builder.append(">");
 	}
 
-	protected void writeEnd(StringBuilder builder, String name) {
+	void writeEnd(StringBuilder builder, String name) {
 		builder.append("</").append(name).append(">");
 	}
 

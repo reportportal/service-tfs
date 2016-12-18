@@ -44,7 +44,7 @@ import java.util.stream.StreamSupport;
 class TfsUtils {
 
 	static final Predicate<Field> FAILED_FIELDS = field -> field.getStatus() != FieldStatus.VALID;
-	static final Function<Field, String> ERROR_MESSAGE_TRANSFORMER = input -> input.getStatus().getInvalidMessage(input);
+	private static final Function<Field, String> ERROR_MESSAGE_TRANSFORMER = input -> input.getStatus().getInvalidMessage(input);
 
 	private TfsUtils() {
 		// statics only
@@ -59,7 +59,7 @@ class TfsUtils {
 		}
 	}
 
-	static void checkFields(WorkItem workItem) {
+	private static void checkFields(WorkItem workItem) {
 		List<Field> failed = StreamSupport.stream(workItem.getFields().spliterator(), false).filter(FAILED_FIELDS)
 				.collect(Collectors.toList());
 		if (!failed.isEmpty()) {

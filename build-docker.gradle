@@ -19,8 +19,7 @@ docker {
     url = "${dockerServerUrl}"
 }
 
-def dockerProjectName = "reportportal-dev/${project.name}".toLowerCase()
-
+def dockerProjectName = "reportportal/${project.name}".toLowerCase()
 
 
 task prepareDockerfile(type: Copy) {
@@ -33,9 +32,8 @@ task prepareDockerfile(type: Copy) {
 
 task buildDocker(type: DockerBuildImage, dependsOn: prepareDockerfile) {
     inputDir = file("${project.buildDir}/libs")
-    tag = "${dockerProjectName}:latest"
+    tag = "${dockerProjectName}:${version}"
 }
-
 
 prepareDockerfile.dependsOn build
 buildDocker.dependsOn prepareDockerfile

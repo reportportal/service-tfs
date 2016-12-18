@@ -26,13 +26,13 @@ package com.epam.reportportal.extension.bugtracking.tfs.html;
  *
  * @author Andrei Varabyeu
  */
-public class TagUtils {
+class TagUtils {
 
 	private TagUtils() {
 		// statics only
 	}
 
-	public static Tag text(final String text) {
+	static Tag text(final String text) {
 		return () -> text;
 	}
 }

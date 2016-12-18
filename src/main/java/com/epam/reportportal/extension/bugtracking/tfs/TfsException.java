@@ -26,17 +26,17 @@ package com.epam.reportportal.extension.bugtracking.tfs;
  *
  * @author Andrei Varabyeu
  */
-public class TfsException extends RuntimeException {
+class TfsException extends RuntimeException {
 	/**
 	 * Generated ID
 	 */
 	private static final long serialVersionUID = 6163149698424352602L;
 
-	public TfsException(String message) {
+	TfsException(String message) {
 		super(message);
 	}
 
-	public TfsException(String message, Throwable cause) {
+	TfsException(String message, Throwable cause) {
 		super(message, cause);
 	}
 }

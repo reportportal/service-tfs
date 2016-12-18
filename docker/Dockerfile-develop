@@ -3,9 +3,9 @@ FROM frolvlad/alpine-oraclejdk8:slim
 MAINTAINER Andrei Varabyeu <andrei_varabyeu@epam.com>
 
 VOLUME /tmp
-ADD tfs-service-${version}.jar app.jar
+ADD service-tfs-${version}.jar app.jar
 ADD lib /lib
-ADD native.tar.gz /tfs/
+ADD native.tar.gz /tfs
 
 RUN sh -c 'touch /app.jar'
 EXPOSE 8080

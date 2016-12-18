@@ -21,8 +21,8 @@
 
 package com.epam.reportportal.extension.bugtracking.tfs;
 
-import com.epam.reportportal.extension.bugtracking.InternalTicket;
 import com.epam.reportportal.commons.template.TemplateEngine;
+import com.epam.reportportal.extension.bugtracking.InternalTicket;
 import com.google.common.base.Strings;
 import com.microsoft.tfs.core.clients.workitem.NonCoreFieldsReferenceNames;
 import com.microsoft.tfs.core.clients.workitem.WorkItem;
@@ -118,34 +118,10 @@ class DescriptionBuilder implements InputFieldBuilder<String> {
 		/* Flag - should be log-message shown on html page or not */
 		private boolean isMessageVisible;
 
-		public HtmlLogEntry(String message, String link, boolean isLog) {
+		HtmlLogEntry(String message, String link, boolean isLog) {
 			this.logMsg = message;
 			this.screen = link;
 			this.isMessageVisible = isLog;
-		}
-
-		public String getLogMsg() {
-			return logMsg;
-		}
-
-		public void setLogMsg(String value) {
-			this.logMsg = value;
-		}
-
-		public String getScreen() {
-			return screen;
-		}
-
-		public void setScreen(String value) {
-			this.screen = value;
-		}
-
-		public boolean getIsMessageVisible() {
-			return isMessageVisible;
-		}
-
-		public void setIsMessageVisible(boolean value) {
-			this.isMessageVisible = value;
 		}
 
 		@Override
