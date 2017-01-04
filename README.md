@@ -15,25 +15,24 @@ remember to uncheck <b>Web Proxy (HTTP)</b> checkbox <b>after</b> you build an i
 
 ---
 
-### Windows users:
-* TBD
-
----
-
 ### Build your docker container
+#### Ubuntu and Mac users:
 
  * In new terminal tab run <code>socat -d TCP-LISTEN:2375,range=127.0.0.1/32,reuseaddr,fork UNIX:/var/run/docker.sock</code>
  
  * <code>gradle buildDocker</code>
  
  * Terminate socat process
+ 
+ 
+ #### Windows users:
+ * <code>gradle buildDocker</code>
 
 ---
 
 #Important
 
 This is <b>BETA</b> version. Consider to monitor your servers for performance issues.
-* Memory leak is probably one of the common
 
 ---
 
