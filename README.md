@@ -35,7 +35,7 @@ This is <b>BETA</b> version. Consider to monitor your servers for performance is
 
 ---
 
-Service contains <code>TFS SDK</code> from Microsoft. You may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> latest SDK and update JAR in <code>libs</code> folder (currently this is com.microsoft.tfs.sdk-14.111.1.jar). Than update <code>build.gradle</code> according to your changes
+Service contains <code>TFS SDK</code> from Microsoft. You may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> latest SDK and update JAR in <code>libs</code> folder (currently this is com.microsoft.tfs.sdk-14.111.1.jar). Then update <code>build.gradle</code> according to your changes
 
 ---
 
