@@ -31,26 +31,31 @@ import java.util.Map;
  *
  * @author Andrei Varabyeu
  */
-abstract class AbstractTag implements Tag {
+public abstract class AbstractTag implements Tag {
 
 	private String name;
 
 	private Map<String, String> attributes;
 
-	AbstractTag(String name) {
+	public AbstractTag(String name) {
 		this.name = name;
 		this.attributes = new LinkedHashMap<>();
 	}
 
-	String getName() {
+	public AbstractTag attribute(String name, String value) {
+		this.attributes.put(name, "\"" + value + "\"");
+		return this;
+	}
+
+	protected String getName() {
 		return name;
 	}
 
-	Map<String, String> getAttributes() {
+	protected Map<String, String> getAttributes() {
 		return attributes;
 	}
 
-	void writeStart(StringBuilder builder, String name, Map<String, String> attributes) {
+	protected void writeStart(StringBuilder builder, String name, Map<String, String> attributes) {
 		builder.append("<").append(name);
 		if (null != attributes && !attributes.isEmpty()) {
 			builder.append(" ");
@@ -59,7 +64,7 @@ abstract class AbstractTag implements Tag {
 		builder.append(">");
 	}
 
-	void writeEnd(StringBuilder builder, String name) {
+	protected void writeEnd(StringBuilder builder, String name) {
 		builder.append("</").append(name).append(">");
 	}
 

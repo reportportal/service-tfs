@@ -36,6 +36,10 @@ This is <b>BETA</b> version. Consider to monitor your servers for performance is
 
 ---
 
+Due to license restrictions we can't publish some third party components such as <code>TFS SDK</code> from Microsoft. So as workaround, you may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> sdk and put JAR into <code>libs</code> folder (currently this is com.microsoft.tfs.sdk-14.111.1.jar)
+
+---
+
 [![License](https://img.shields.io/badge/license-GPLv3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![stackoverflow](https://img.shields.io/badge/reportportal-stackoverflow-orange.svg?style=flat)](http://stackoverflow.com/questions/tagged/reportportal)
 
