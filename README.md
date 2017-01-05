@@ -23,9 +23,8 @@ remember to uncheck <b>Web Proxy (HTTP)</b> checkbox <b>after</b> you build an i
  * <code>gradle buildDocker</code>
  
  * Terminate socat process
- 
- 
- #### Windows users:
+  
+#### Windows users:
  * <code>gradle buildDocker</code>
 
 ---
@@ -36,7 +35,7 @@ This is <b>BETA</b> version. Consider to monitor your servers for performance is
 
 ---
 
-Due to license restrictions we can't publish some third party components such as <code>TFS SDK</code> from Microsoft. So as workaround, you may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> sdk and put JAR into <code>libs</code> folder (currently this is com.microsoft.tfs.sdk-14.111.1.jar)
+Service contains <code>TFS SDK</code> from Microsoft. You may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> latest SDK and update JAR in <code>libs</code> folder (currently this is com.microsoft.tfs.sdk-14.111.1.jar). Than update <code>build.gradle</code> according to your changes
 
 ---
 
