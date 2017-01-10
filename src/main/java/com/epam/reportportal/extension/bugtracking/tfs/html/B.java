@@ -22,7 +22,7 @@
 package com.epam.reportportal.extension.bugtracking.tfs.html;
 
 /**
- * <b> TAG representation
+ * <b>TAG representation</b>
  *
  * @author Andrei Varabyeu
  */

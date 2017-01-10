@@ -26,7 +26,6 @@ import com.epam.reportportal.extension.bugtracking.ExternalSystemStrategy;
 import com.epam.reportportal.extension.bugtracking.InternalTicket;
 import com.epam.reportportal.extension.bugtracking.InternalTicketAssembler;
 import com.epam.ta.reportportal.commons.Predicates;
-
 import com.epam.ta.reportportal.commons.validation.BusinessRule;
 import com.epam.ta.reportportal.database.entity.ExternalSystem;
 import com.epam.ta.reportportal.ws.model.ErrorType;
@@ -73,20 +72,18 @@ public class TfsSdkStrategy implements ExternalSystemStrategy {
 	 * "TFS Native Libs are placed in " + file); }
 	 */
 
-	private static final String GET_BY_SUMMARY_WIQL = "SELECT ID FROM WorkItems WHERE [System.TeamProject] = '%s' AND [System.Title] contains '%s'";
-
 	private static final WorkItemConverter WIT_CONVERTER = new WorkItemConverter();
 
 	private List<InputFieldBuilder<?>> fieldBuilders;
 
 	private InternalTicketAssembler ticketAssembler;
 
-	private BasicTextEncryptor encyptor;
+	private BasicTextEncryptor encryptor;
 
-	public TfsSdkStrategy(InternalTicketAssembler ticketAssembler, List<InputFieldBuilder<?>> fieldBuilders, BasicTextEncryptor encyptor) {
+	TfsSdkStrategy(InternalTicketAssembler ticketAssembler, List<InputFieldBuilder<?>> fieldBuilders, BasicTextEncryptor encryptor) {
 		this.ticketAssembler = ticketAssembler;
 		this.fieldBuilders = fieldBuilders;
-		this.encyptor = encyptor;
+		this.encryptor = encryptor;
 	}
 
 	@Override
@@ -159,7 +156,7 @@ public class TfsSdkStrategy implements ExternalSystemStrategy {
 
 	// TODO make a part of interface
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Ticket submitTicket(final InternalTicket ticket, final ExternalSystem externalSystemDetails, final boolean encrypted) {
+	private Ticket submitTicket(final InternalTicket ticket, final ExternalSystem externalSystemDetails, final boolean encrypted) {
 		return doWithClient(externalSystemDetails, encrypted, witClient -> {
 			WorkItemType bugWorkItemType = witClient.getProjects().get(externalSystemDetails.getProject()).getWorkItemTypes()
 					.get(Constants.BUG_ITEM_TYPE);
@@ -221,7 +218,7 @@ public class TfsSdkStrategy implements ExternalSystemStrategy {
 		String username = Strings.isNullOrEmpty(details.getDomain()) ?
 				details.getUsername() :
 				details.getDomain() + "\\" + details.getUsername();
-		String passw = descryptPass ? encyptor.decrypt(details.getPassword()) : details.getPassword();
+		String passw = descryptPass ? encryptor.decrypt(details.getPassword()) : details.getPassword();
 		TFSTeamProjectCollection tfsTeamProjectCollection = new TFSTeamProjectCollection(TfsUtils.asUri(details.getUrl()),
 				new UsernamePasswordCredentials(username, passw), new DefaultConnectionAdvisor(Locale.getDefault(), TimeZone.getDefault()) {
 			@Override

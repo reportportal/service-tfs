@@ -22,7 +22,7 @@
 package com.epam.reportportal.extension.bugtracking.tfs.html;
 
 /**
- * Tag <a href="some href">some test<a/>
+ * Tag <a href="http://some-href">some test</a>
  *
  * @author Andrei Varabyeu
  */

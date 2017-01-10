@@ -21,10 +21,10 @@
 
 package com.epam.reportportal.extension.bugtracking.tfs.html;
 
+import com.google.common.base.Joiner;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.google.common.base.Joiner;
 
 /**
  * Abstract Tag containing name and attributes
