@@ -30,7 +30,7 @@ remember to uncheck <b>Web Proxy (HTTP)</b> checkbox <b>after</b> you build an i
 ---
 
 #### Notes
-Service contains `TFS SDK` from Microsoft. You may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> latest SDK and update JAR in <code>libs</code> folder. Then update `build.gradle` and  `docker\Dockerfile-develop` according to your changes
+Service contains `TFS SDK` from Microsoft. You may <a href="https://github.com/Microsoft/team-explorer-everywhere/releases" target="_blank">download</a> latest SDK and update JAR in <code>libs</code> folder. Then update `build.gradle` according to your changes
 
 ---
 
