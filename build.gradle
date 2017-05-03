@@ -42,10 +42,10 @@ dependencyManagement {
     }
 }
 dependencies {
-    compile 'com.epam.reportportal:commons-bugtracking:2.6.2'
-    compile 'com.epam.reportportal:commons:2.6.1'
+    compile 'com.epam.reportportal:commons-bugtracking:3.0.0'
+    compile 'com.epam.reportportal:commons:3.0.0'
     compile 'org.jasypt:jasypt:1.9.2'
-    compile name: 'com.microsoft.tfs.sdk-14.111.1'
+    compile name: 'com.microsoft.tfs.sdk-14.117.0'
 
 }
 
@@ -73,7 +73,7 @@ jar {
                 'Main-Class': 'com.epam.reportportal.extension.bugtracking.tfs.TfsServiceApp',
                 'Class-Path': configurations.runtime.files.findAll { it.name.contains("sdk-14") == false }.collect {
                     "lib/$it.name"
-                }.join(' ').concat(' libs/com.microsoft.tfs.sdk-14.111.1.jar')
+                }.join(' ').concat(' libs/com.microsoft.tfs.sdk-14.117.0.jar')
     }
 }
 
