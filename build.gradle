@@ -52,7 +52,7 @@ dependencies {
 
 task copyTfs(type: Copy) {
     into "$buildDir/libs"
-    from "$projectDir/docker/native.zip"
+    from "$projectDir/docker/native.tar.gz"
 }
 
 task copyRuntimeLibs(type: Copy) {
