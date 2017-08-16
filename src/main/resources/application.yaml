@@ -1,17 +1,6 @@
 # Server Configuration
 server:
-  port: 8686
-
-# Eureka Configuration
-eureka:
-  instance:
-    hostname: ${reportportal.eureka.instance.hostname:localhost}
-    metadata-map:
-      extension: tfs
-
-  client:
-    serviceUrl:
-      defaultZone: http://${reportportal.eureka.hostname:localhost}:8761/eureka/
+  port: 8080
 
 # MongoDB configuration
 rp:
