@@ -18,14 +18,17 @@ remember to uncheck <b>Web Proxy (HTTP)</b> checkbox <b>after</b> you build an i
 ### Build your docker container
 #### Ubuntu and Mac users:
 
- * In new terminal tab run <code>socat -d TCP-LISTEN:2375,range=127.0.0.1/32,reuseaddr,fork UNIX:/var/run/docker.sock</code>
+ * In new terminal tab run `socat -d TCP-LISTEN:2375,range=127.0.0.1/32,reuseaddr,fork UNIX:/var/run/docker.sock`
  
- * <code>gradle buildDocker</code>
+ * `gradle buildDocker`
  
  * Terminate `socat` process
   
 #### Windows users:
- * <code>gradle buildDocker</code>
+
+ * [before] If you are using latest Docker and getting error `org.apache.http.conn.HttpHostConnectException: Connect to localhost:2375` - right click on Docker tray icon / Settings / General. Select checkbox `Expose daemon on tcp://localhost:2375 without TLS`
+
+ * `gradle buildDocker`
 
 ---
 
