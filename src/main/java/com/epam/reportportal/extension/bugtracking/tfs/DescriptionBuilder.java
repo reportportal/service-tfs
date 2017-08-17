@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
  */
 class DescriptionBuilder implements InputFieldBuilder<String> {
 
-	private static final String TFS_BUG_TEMPLATE_PATH = "bug_template.vm";
+	private static final String TFS_BUG_TEMPLATE_PATH = "bug_template.ftl";
 
 	private TemplateEngine templateEngine;
 

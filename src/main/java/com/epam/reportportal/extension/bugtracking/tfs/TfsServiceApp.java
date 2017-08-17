@@ -36,10 +36,10 @@
  */
 package com.epam.reportportal.extension.bugtracking.tfs;
 
+import com.epam.reportportal.commons.template.TemplateEngineProvider;
 import com.epam.reportportal.extension.bugtracking.BugTrackingApp;
 import com.epam.reportportal.extension.bugtracking.ExternalSystemStrategy;
 import com.epam.reportportal.extension.bugtracking.InternalTicketAssembler;
-import com.epam.reportportal.commons.template.VelocityTemplateEngine;
 import com.google.common.collect.ImmutableList;
 import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +71,7 @@ public class TfsServiceApp extends BugTrackingApp {
 	public List<InputFieldBuilder<?>> tfsFieldBuilders() {
 		//@formatter:off
 		return ImmutableList.<InputFieldBuilder<?>> builder()
-				.add(new DescriptionBuilder(new VelocityTemplateEngine()))
+				.add(new DescriptionBuilder(new TemplateEngineProvider().get()))
 				.add(new DateFieldBuilder(DATE_FORMAT))
 				.add(new DefaultFieldBuilder()).build();
 		//@formatter:on
