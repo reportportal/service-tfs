@@ -1,17 +1,6 @@
 # Server Configuration
 server:
-  port: 8686
-
-# Eureka Configuration
-eureka:
-  instance:
-    hostname: ${reportportal.eureka.instance.hostname:localhost}
-    metadata-map:
-      extension: tfs
-
-  client:
-    serviceUrl:
-      defaultZone: http://${reportportal.eureka.hostname:localhost}:8761/eureka/
+  port: 8080
 
 # MongoDB configuration
 rp:
@@ -43,3 +32,63 @@ rp:
       user:
         size: 1000
         expiration: 60
+
+# Eureka Configuration
+eureka:
+  instance:
+    status-page-url-path: ${server.contextPath:}/info
+    health-check-url-path: ${server.contextPath:}/health
+    hostname: ${reportportal.eureka.instance.hostname:localhost}
+    metadata-map:
+      extension: tfs
+
+  client:
+    serviceUrl:
+      defaultZone: http://${reportportal.eureka.hostname:localhost}:8761/eureka/
+    enabled: false
+    register-with-eureka: false
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        tags:
+          - urlprefix-${server.context-path:}/tfs opts strip=/tfs
+          - traefik.frontend.rule=PathPrefixStrip:${server.context-path:/}
+          - statusPageUrlPath=${server.contextPath:}/info
+          - healthCheckUrlPath=${server.contextPath:}/health
+          - extension=tfs
+        healthCheckPath: ${server.contextPath:}/health
+        register: true
+      enabled: true
+
+## Consul as service registry
+---
+spring:
+  profiles: consul
+  cloud:
+    consul:
+      enabled: true
+      discovery:
+        register: true
+eureka:
+  client:
+    register-with-eureka: false
+    enabled: false
+
+## Eureka as service registry
+---
+spring:
+  profiles: eureka
+  cloud:
+    consul:
+      enabled: false
+      discovery:
+        register: false
+eureka:
+  client:
+    register-with-eureka: true
+    enabled: true
+---

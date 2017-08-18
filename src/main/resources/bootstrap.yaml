@@ -4,22 +4,18 @@ info:
     description: ReportPortal TFS Integration
     version: '@version@'
     branch: '@branch@'
+    repo: '@repo@'
 
 spring:
   application:
     name: tfs
-  cloud:
-    config:
-      uri: http://${reportportal.config.server.host:localhost}:8761/configs
-      failFast: true
-      # Wait for config server to start
-      retry:
-        max-attempts: 20
-        initial-interval: 3000
+  profiles:
+    active: ${rp.profiles:default}
+security:
+  sessions: stateless
+  basic:
+    enabled: false
 
 rp:
    tfs:
      native: tfs/native
-endpoints:
-  health:
-    enabled: false
