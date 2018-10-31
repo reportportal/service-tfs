@@ -154,6 +154,11 @@ public class TfsSdkStrategy implements ExternalSystemStrategy {
 		});
 	}
 
+	@Override
+	public List<String> getIssueTypes(ExternalSystem system) {
+		return null;
+	}
+
 	// TODO make a part of interface
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Ticket submitTicket(final InternalTicket ticket, final ExternalSystem externalSystemDetails, final boolean encrypted) {
