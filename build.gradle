@@ -45,7 +45,7 @@ description = 'EPAM Report Portal. TFS Integration'
 
 dependencies {
     compile 'com.epam.reportportal:commons-bugtracking:4.2.0'
-    compile 'com.epam.reportportal:commons:4.2.0'
+//    compile 'com.epam.reportportal:commons:4.2.0'
     compile 'org.jasypt:jasypt:1.9.2'
     compile name: 'com.microsoft.tfs.sdk-14.120.0'
 }
