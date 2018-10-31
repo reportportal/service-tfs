@@ -2,14 +2,25 @@
 server:
   port: 8080
 
+# Eureka Configuration
+eureka:
+  instance:
+    status-page-url-path: ${server.contextPath:}/info
+    health-check-url-path: ${server.contextPath:}/health
+    hostname: ${reportportal.eureka.instance.hostname:localhost}
+    metadata-map:
+      extension: jira
+
+  client:
+    serviceUrl:
+      defaultZone: http://${reportportal.eureka.hostname:localhost}:8761/eureka/
+    enabled: false
+    register-with-eureka: false
 # MongoDB configuration
 rp:
   mongo:
-    host: ${reportportal.mongo.host:docker.local}
-    port: 27017
+    uri: mongodb://localhost:27017
     dbName: reportportal
-#        user: user
-#        password: 1q2w3e
     connectionsPerHost: 1000
     threadsAllowedToBlockForConnectionMultiplier: 1000
     connectTimeout: 20000
@@ -22,47 +33,16 @@ rp:
     writeNumber: 1
     writeFsync: false
   cache:
-      project:
-        size: 1000
-        expiration: 1
-        info: 10
-      ticket:
-        size: 10000
-        expiration: 5
-      user:
-        size: 1000
-        expiration: 60
-
-# Eureka Configuration
-eureka:
-  instance:
-    status-page-url-path: ${server.contextPath:}/info
-    health-check-url-path: ${server.contextPath:}/health
-    hostname: ${reportportal.eureka.instance.hostname:localhost}
-    metadata-map:
-      extension: tfs
-
-  client:
-    serviceUrl:
-      defaultZone: http://${reportportal.eureka.hostname:localhost}:8761/eureka/
-    enabled: false
-    register-with-eureka: false
-
-spring:
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      discovery:
-        tags:
-          - urlprefix-${server.context-path:}/tfs opts strip=/tfs
-          - traefik.frontend.rule=PathPrefixStrip:${server.context-path:/}
-          - statusPageUrlPath=${server.contextPath:}/info
-          - healthCheckUrlPath=${server.contextPath:}/health
-          - extension=tfs
-        healthCheckPath: ${server.contextPath:}/health
-        register: true
-      enabled: true
+    project:
+      size: 1000
+      expiration: 1
+      info: 10
+    ticket:
+      size: 10000
+      expiration: 5
+    user:
+      size: 1000
+      expiration: 60
 
 ## Consul as service registry
 ---
