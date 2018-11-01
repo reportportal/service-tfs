@@ -9,7 +9,7 @@ eureka:
     health-check-url-path: ${server.contextPath:}/health
     hostname: ${reportportal.eureka.instance.hostname:localhost}
     metadata-map:
-      extension: jira
+      extension: tfs
 
   client:
     serviceUrl:
@@ -44,6 +44,32 @@ rp:
     user:
       size: 1000
       expiration: 60
+
+## OAUTH PRIVATE-PUBLIC keypair for TFS integration
+oauth:
+  certificate:
+    store: oauth-keystore.jks
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        tags:
+        - urlprefix-${server.context-path:}/tfs opts strip=/tfs
+        - traefik.frontend.rule=PathPrefixStrip:${server.context-path:}/tfs
+        - statusPageUrlPath=${server.contextPath:}/info
+        - healthCheckUrlPath=${server.contextPath:}/health
+        - extension=tfs
+        healthCheckPath: ${server.contextPath:}/health
+        register: true
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+        health-check-critical-timeout: 30s
+      enabled: true
+logging:
+  level:
+    com.netflix.discovery.shared.resolver: warn
 
 ## Consul as service registry
 ---
